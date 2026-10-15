@@ -1,0 +1,28 @@
+Guía de Configuración Unity (Paso a Paso)
+1. Escena y Objetos:
+
+  • Crear Sprites para Jugador, Enemigo y Bala (Square o Circle).
+
+  • El Jugador debe tener Rigidbody 2D (Gravity Scale: 0) y Box Collider 2D.
+
+  • El Enemigo debe tener Box Collider 2D y el Tag: "Enemigo" asignado.
+
+2. Crear el Prefab de la Bala:
+
+  • Pon la Bala en la escena, agrégale un Box Collider 2D y marca Is Trigger.
+
+  • Arrastra la Bala desde la jerarquía a la carpeta de archivos (Project) para que se ponga azul.
+
+  • Borra la bala de la jerarquía.
+
+3. Sonidos de Fondo:
+
+  • Crea un objeto vacío, ponle Audio Source, arrastra la música, marca Loop y Play On Awake.
+
+4. Conectar Scripts:
+
+  • Arrastra cada script al objeto correspondiente en la jerarquía.
+
+  • En el Inspector del Jugador, arrastra el Prefab azul de la bala al hueco del script.
+
+  • Arrastra los archivos de audio (.mp3) a los huecos de sonidos en los scripts.

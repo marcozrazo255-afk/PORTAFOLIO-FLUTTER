@@ -1,0 +1,18 @@
+# Flutter y Dart
+.dart_tool/
+.pub/
+build/
+.idea/
+.vscode/
+*.iml
+android/
+ios/
+linux/
+macos/
+windows/
+web/
+
+# PHP y temporales
+*.log
+.env
+vendor/

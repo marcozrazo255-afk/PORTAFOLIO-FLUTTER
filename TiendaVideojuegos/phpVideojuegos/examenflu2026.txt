@@ -1,0 +1,31 @@
+
+
+aplicacion para consultar saldos
+
+base de datos con 2 tablas de usuario con id y nip
+
+
+
+tabla movimientos id, saldo, id usuario, foreing key,
+
+crear usuario por default, nip 2026, saldo 1000, 
+
+
+ventana 1 con card pedir el nip si el nip es correcto lo pasa a otra ventana, label, dos botones, listview
+y 1000 por defecto, boton de retiro y agregar al presionar retiro abre un showdialog que retire menor al saldo
+y al retirar dira retiro; "num de retiro" y se muestra en el listview y al presionar agregar agregamos cierta cantidad se agregamos
+ en la base de datos y se actualizara y si se sale a la principal se debe de reflejar el saldo, dependiendo de la operacion aumentara
+
+
+
+
+
+ahora necesito que en la ventana de saldo muestre el saldo y dos botones
+uno que diga retirar y otro que diga abonar tambien agregar una listview
+y que cada que presione los botones salga un alertdialog indicando lo que 
+debe de hacer y tambien emplear la logica o sea conectar con el php, y de 
+una vez haz la conexion de agragar saldo y de quitar y que el de insertar
+lo guarde en la base de datos
+
+
+aqui esta la estructura de mi api_servicios 

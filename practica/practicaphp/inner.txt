@@ -1,0 +1,42 @@
+<?php
+// 1. CONEXIÓN Y PERMISOS
+// Incluye el archivo que abre la conexión a tu base de datos MySQL ($conexion)
+include("conexion.php");
+
+// Permite que la aplicación de Flutter (desde el emulador) acceda a este archivo sin bloqueos de seguridad
+header("Access-Control-Allow-Origin: *");
+
+// Le avisa a Flutter que la respuesta que va a recibir no es texto común, sino datos puros en formato JSON
+header("Content-Type: application/json; charset=UTF-8");
+
+
+// 2. CONFIGURACIÓN DE LA CONSULTA SQL
+// SELECT * : Indica que queremos traer TODAS las columnas de ambas tablas automáticamente
+// FROM Animales, Clasificacion : Lista las dos tablas que contienen la información que queremos juntar
+// WHERE ... : La magia relacional. Obliga a MySQL a emparejar las filas de ambas tablas 
+// donde el código "id_animales" sea exactamente el mismo en los dos lados.
+$sql = "SELECT * 
+        FROM Animales, Clasificacion 
+        WHERE Animales.id_animales = Clasificacion.id_animales";
+
+// Ejecuta la consulta en la base de datos usando la conexión y la instrucción SQL de arriba
+$resultado = mysqli_query($conexion, $sql);
+
+
+// 3. PROCESAMIENTO DE LOS DATOS
+// Crea una lista (array) vacía donde iremos guardando los registros que encuentre MySQL
+$datos = array();
+
+// El bucle "while" recorre las filas de la base de datos una por una.
+// "mysqli_fetch_assoc" transforma cada fila en un formato que entiende las columnas por su nombre.
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    // Toma la fila actual (con los datos mezclados de ambas tablas) y la mete dentro de nuestra lista $datos
+    $datos[] = $fila;
+}
+
+
+// 4. ENVÍO DE DATOS A FLUTTER
+// "json_encode" empaqueta y convierte toda nuestra lista de PHP en un texto estructurado tipo JSON.
+// El "echo" imprime ese resultado en la pantalla para que Flutter lo pueda leer mediante el "http.get"
+echo json_encode($datos);
+?>

@@ -1,0 +1,96 @@
+Scripts Listos para el Examen
+1. Script_Jugador.cs
+	
+using UnityEngine;
+
+public class Script_Jugador : MonoBehaviour {
+
+    public float velocidad = 5f;
+
+    public GameObject balaPrefab;
+
+    public AudioClip sonidoDisparo;
+
+    void Update() {
+
+        float h = Input.GetAxis("Horizontal");
+
+        transform.Translate(Vector3.right * h * velocidad * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+
+            Instantiate(balaPrefab, transform.position, Quaternion.identity);
+
+            GetComponent<AudioSource>().PlayOneShot(sonidoDisparo);
+
+        }
+
+    }
+
+}
+
+```
+
+2. Script_Bala.cs
+
+```
+
+using UnityEngine;
+
+public class Script_Bala : MonoBehaviour {
+
+    public float velocidadBala = 10f;
+
+    public AudioClip sonidoImpacto;
+
+    void Start() {
+
+        Destroy(gameObject, 3f); // Optimización de RAM
+
+    }
+
+    void Update() {
+
+        transform.Translate(Vector3.up * velocidadBala * Time.deltaTime);
+
+    }
+
+    void OnTriggerEnter2D(Collider2D otro) {
+
+        if (otro.CompareTag("Enemigo")) {
+
+            // Suena aunque el objeto se destruya
+
+            AudioSource.PlayClipAtPoint(sonidoImpacto, transform.position);
+
+            Destroy(otro.gameObject);
+
+            Destroy(gameObject);
+
+        }
+
+    }
+
+}
+
+```
+
+3. Script_Enemigo.cs
+
+```
+
+using UnityEngine;
+
+public class Script_Enemigo : MonoBehaviour {
+
+    public float velocidadEnemigo = 2f;
+
+    void Update() {
+
+        transform.Translate(Vector3.down * velocidadEnemigo * Time.deltaTime);
+
+    }
+
+}
+
+```

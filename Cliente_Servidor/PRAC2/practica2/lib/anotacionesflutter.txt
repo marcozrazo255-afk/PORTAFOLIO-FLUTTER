@@ -1,0 +1,44 @@
+
+
+estructura basica para main sin etiqueta
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: const Login());
+  }
+}
+
+
+
+Estructura basica para una pagina con titulo 
+
+import 'package:flutter/material.dart';
+
+class Login extends StatefulWidget {
+  const Login({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return banco();
+  }
+}
+
+class banco extends State<Login> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Login"),
+        backgroundColor: const Color.fromARGB(255, 4, 159, 255),
+      ),
+      body: Center(),
+    );
+  }
+}

@@ -1,0 +1,93 @@
+Hacer una aplicación en flutter, que involucre 3 ventanas, en la ventana 1 se tendrá 2 cajas
+de texto y un botón previamente validados, pero no deben ser iguales (incluir la validación
+que no sean iguales) si el número 1 es mayor se enviara a la 2 ventana que aparecerá en un 
+texto con un botón Pero si el segundo es mayor ese se enviara a la 3er ventana que esa ventana
+también incluirára un texto y botón que si al presionar el botón mostrará en un diálogo
+(snakbar diálog) con el valor enviado al ^ cuadrado
+
+
+DISEÑO DE LA PAGINA 1
+import 'package:flutter/material.dart';
+
+class Pagina1 extends Statefulwidget {
+  const Pagina1({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pagina 1'),
+        backgroundColor: const Color.fromARGB(255, 12, 237, 177),
+      ),
+      backgroundColor: const Color.fromARGB(255, 7, 253, 179),
+      body: Form(
+        child: Container(
+          color: const Color.fromARGB(255, 77, 255, 222),
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Column(
+                children: [
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: "Escribe un número",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 142, 104),
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: "Escribe otro número",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 142, 104),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        constraints: BoxConstraints(maxWidth: 250),
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              29,
+                              229,
+                              222,
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                          ),
+                          icon: Icon(Icons.done_all_sharp, color: Colors.black),
+                          label: Text(
+                            "Aceptar",
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+

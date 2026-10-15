@@ -1,0 +1,183 @@
+ 
+ ESTRUCTURA BASICA DE FLUTTER
+ 1. La clase del Widget (la parte pública)
+class MiPantalla extends StatefulWidget {
+  const MiPantalla({super.key});
+
+  @override
+  State<MiPantalla> createState() => _MiPantallaState();
+}
+
+// 2. La clase del Estado (la parte privada donde ocurre la magia)
+class _MiPantallaState extends State<MiPantalla> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Título de la Pantalla'),
+      ),
+      body: const Center(
+        child: Text('Contenido Aquí'),
+      ),
+    );
+  }
+}
+
+
+VENTANA DE ApiServicios
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+
+class ApiServicios{
+  static const String BaseUrl = "http://10.0.2.2:8000"; //this is used to connect to the server by phone
+
+  /*static Future insertar(String usuario, String password) async{
+    var url = Uri.parse("$BaseUrl/insertar.php?usuario=$usuario&password=$password");
+    var respuesta = await http.get(url);
+    return respuesta.body;
+  }
+
+  static Future eliminar(int id) async{
+    var url = Uri.parse("$BaseUrl/eliminar.php?id=$id");
+    var respuesta = await http.get(url);
+    return respuesta.body;
+  }
+
+  static Future modificar(int id, String usuario, String password) async{
+    var url = Uri.parse("$BaseUrl/modificar.php?id=$id&usuario=$usuario&password=$password");
+    var respuesta = await http.get(url);
+    return respuesta.body;
+  }*/
+
+  static Future ObtenerAlumnos() async {
+    var url = Uri.parse("$BaseUrl/obteneralumnos.php");
+    var respuesta = await http.get(url);
+    return json.decode(respuesta.body);
+  }
+
+  static Future ObtenerCarreras() async {
+    var url = Uri.parse("$BaseUrl/obtenercarreras.php");
+    var respuesta = await http.get(url);
+    return json.decode(respuesta.body);
+  }
+
+
+}
+
+
+import 'package:flutter/material.dart';
+// 1. Tus importaciones se quedan exactamente igual
+import 'package:flutter_application_1/vistas/Alumnos.dart';
+import 'package:flutter_application_1/vistas/Carreras.dart';
+
+class Page1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return Design();
+  }
+}
+
+
+
+
+import 'package:flutter/material.dart';
+// 1. IMPORTANTE: Reemplaza estas rutas por las carpetas reales donde tengas tus archivos
+import 'package:flutter_application_1/vistas/CategoriasScreen.dart'; 
+import 'package:flutter_application_1/vistas/VideojuegosScreen.dart';
+
+class Inicio extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return Clase();
+  }
+}
+
+class Clase extends State<Inicio> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Inicio", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: const Center(
+        child: Text('Bienvenido a la Tienda de Videojuegos'),
+      ),
+      
+      drawer: Drawer(
+        child: Column(
+          children: [
+            // Título arriba del todo con espacio superior
+            const Padding(
+              padding: EdgeInsets.only(top: 60.0, bottom: 20.0),
+              child: Text(
+                'Tienda Videojuegos',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ),
+            
+            // Centra verticalmente los dos botones de navegación
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min, 
+                  children: [
+                    
+                    // ACCIÓN 1: Mandar a la ventana de Categorías
+                    ListTile(
+                      title: const Text('Categoría', textAlign: TextAlign.center, style: TextStyle(fontSize: 20)),
+                      onTap: () {
+                        Navigator.pop(context); // Cierra el menú lateral
+                        
+                        // Abre la ventana independiente de Categorías
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const CategoriasScreen()),
+                        );
+                      },
+                    ),
+                    
+                    const SizedBox(height: 20), // Espacio de separación entre botones
+                    
+                    // ACCIÓN 2: Mandar a la ventana de Videojuegos
+                    ListTile(
+                      title: const Text('Videojuegos', textAlign: TextAlign.center, style: TextStyle(fontSize: 20)),
+                      onTap: () {
+                        Navigator.pop(context); // Cierra el menú lateral
+                        
+                        // Abre la ventana independiente de Videojuegos
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const VideojuegosScreen()),
+                        );
+                      },
+                    ),
+                    
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+registro de videojuegos en el drawer
+
+nombre, precio, plataforma, id_videojuegos
+categoria: 
+
+para la de videojuegos card con la informacion del juego y un combo 
+
+
+y para categoria una lista de videojuegos que aparece un listview con todo lo que esta en la tabla de videojuegos 
+mostrar, nombre, precio y categoria y un boton de eliminar 
+
+
+3era mostrar 

@@ -1,0 +1,30 @@
+
+
+
+COMO CREAR UNA BASE DE DATOS
+CREATE DATABASE nombre_bd;
+
+USAR BASE DE DATOS
+USE nombre_bd;
+
+
+MOSTRAR LAS BASES DE DATOS
+SHOW DATABASES;
+
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,  -- Auto-incrementable
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE,    telefono VARCHAR(20),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE categorias (
+    id_categoria ,
+    nombre_categoria VARCHAR(50) NOT NULL,
+    descripcion TEXT
+);
+
+
+
+

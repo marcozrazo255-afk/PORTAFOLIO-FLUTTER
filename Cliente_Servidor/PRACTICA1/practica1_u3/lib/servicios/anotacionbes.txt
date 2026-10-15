@@ -1,0 +1,24 @@
+ 
+ ESTRUCTURA BASICA DE FLUTTER
+ 1. La clase del Widget (la parte pública)
+class MiPantalla extends StatefulWidget {
+  const MiPantalla({super.key});
+
+  @override
+  State<MiPantalla> createState() => _MiPantallaState();
+}
+
+// 2. La clase del Estado (la parte privada donde ocurre la magia)
+class _MiPantallaState extends State<MiPantalla> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Título de la Pantalla'),
+      ),
+      body: const Center(
+        child: Text('Contenido Aquí'),
+      ),
+    );
+  }
+}
